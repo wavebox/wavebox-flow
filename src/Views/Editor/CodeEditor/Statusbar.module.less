@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  padding: 0 8px;
+
+  .saveStatus {
+    font-size: 10px;
+    color: var(--mui-palette-text-secondary);
+
+    .icon {
+      margin: 0 1px;
+      font-size: 13px;
+      vertical-align: sub;
+
+      &.done {
+        color: #43A047;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      &.busy {
+        animation: spin 2s linear infinite;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.root {
+  @PADDING: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .title {
+    margin-bottom: 6px;
+  }
+
+  .panes {
+    display: grid;
+    grid-template-columns: 50% 1px 50%;
+    overflow: hidden;
+
+    &.termsDisabled {
+      pointer-events: none;
+    }
+
+    .divider {
+      width: 1px;
+      height: calc(100% - (2 * @PADDING));
+      margin-top: @PADDING;
+      background-color: var(--mui-palette-divider);
+    }
+  }
+}
+
+.terms {
+  text-align: center;
+  color: var(--mui-palette-text-secondary);
+  font-size: 12px;
+  padding: 4px 12px;
+
+  .button > svg {
+    width: 0.8em;
+    height: 0.8em;
+  }
+
+  a {
+    color: var(--mui-palette-text-secondary) !important;
+  }
+}
+
+.githubRibbon {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -30px;
+  right: -80px;
+  width: 200px;
+  height: 100px;
+  transform: rotate(45deg);
+  background-color: #333;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2) rotate(45deg);
+  }
+
+  >svg {
+    transform: scale(0.4) translateY(30%);
+  }
+}

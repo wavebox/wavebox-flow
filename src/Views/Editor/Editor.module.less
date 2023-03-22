@@ -1,0 +1,85 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  @INFOBAR_HEIGHT: 50px;
+  @INFOBAR_TRANSITION_MS: 0.5s;
+  @SIDEBAR_TRANSITION_MS: 0.2s;
+
+  .editor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    will-change: bottom, right;
+    transition: bottom @INFOBAR_TRANSITION_MS ease-in-out, right @SIDEBAR_TRANSITION_MS ease-in-out;
+
+    &.hintViewOpen { bottom: @INFOBAR_HEIGHT; }
+    &:not(.assistantViewOpen) { right: 0 !important; }
+    &.assistnViewResize { transition: none; }
+
+    .toolbar {
+      flex-shrink: 0;
+    }
+
+    .codeEditor {
+      height: 100%;
+    }
+  }
+
+  .hintBasestrip {
+    position: absolute;
+    left: 0;
+    bottom: -@INFOBAR_HEIGHT;
+    height: @INFOBAR_HEIGHT;
+    will-change: bottom, right;
+    transition: bottom @INFOBAR_TRANSITION_MS ease-in-out, right @SIDEBAR_TRANSITION_MS ease-in-out;
+
+    &.hintViewOpen { bottom: 0; }
+    &:not(.assistantViewOpen) { right: 0 !important; }
+    &.assistnViewResize { transition: none; }
+  }
+
+  .assistantSidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    will-change: right;
+    transition: right @SIDEBAR_TRANSITION_MS ease-in-out;
+
+    &.assistantViewOpen { right: 0 !important; }
+    &.assistnViewResize { transition: none; }
+  }
+
+  .assistantSidebarResizeHandle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    cursor: ew-resize;
+
+    &:not(.assistantViewOpen) { display: none; }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 2px;
+      right: 2px;
+      background-color: var(--mui-palette-primary-main);
+      opacity: 0;
+      will-change: opacity;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+}

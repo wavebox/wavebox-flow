@@ -1,0 +1,19 @@
+/*
+You can replace words on a page using a content script. This content script
+doesn't do anything out the box, you need to un-comment some of the code below
+*/
+
+// Get all the elements on the page
+const els = document.querySelectorAll('*')
+
+// Loop through each element
+els.forEach(el => {
+  // Get the element's text content
+  const txt = el.textContent
+  // Replace all instances of "foo" with "bar"
+  // TODO: You might want to change what's being replaced
+  const replaced = txt.replaceAll('foo', 'bar')
+  // Set the element's text content with the replaced content
+  // TODO: comment out the line below to replace
+  //el.textContent = replaced
+});

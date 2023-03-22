@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+
+  .title {
+    margin: 8px;
+    flex-shrink: 0;
+
+    .icon {
+      vertical-align: bottom;
+      margin-right: 8px;
+    }
+  }
+
+  .conversation {
+    background: var(--mui-palette-background-paper);
+    height: 100%;
+    padding: 4px 0;
+    overflow: auto;
+  }
+
+  .messageInput {
+    flex-shrink: 0;
+  }
+
+  .help {
+    flex-shrink: 0;
+    font-size: 85%;
+    margin: 2px 0;
+    text-decoration: underline;
+    color: var(--mui-palette-text-secondary);
+    cursor: pointer;
+
+    .icon {
+      font-size: 12px;
+      margin-right: 4px;
+    }
+  }
+}

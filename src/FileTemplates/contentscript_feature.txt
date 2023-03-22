@@ -1,0 +1,15 @@
+/*
+You can add new features to pages, by injecting your own content scripts. The
+feature can be as simple or complex as you need. This content script doesn't
+do anything out the box, you need to un-comment some of the code below
+*/
+
+//Create an element
+const imgElement = document.createElement('img')
+
+//Set the source of the image element
+imgElement.src = 'https://i.giphy.com/g7GKcSzwQfugw.gif'
+
+//Append the element to the top of the page
+// TODO: un-comment the line below
+// document.body.prepend(imgElement)

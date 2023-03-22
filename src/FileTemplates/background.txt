@@ -1,0 +1,5 @@
+// I run in the background across pages
+console.log('Hello background world!')
+
+// You can find out more information about how background service workers
+// here https://developer.chrome.com/docs/extensions/mv3/service_workers/

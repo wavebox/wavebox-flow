@@ -1,0 +1,99 @@
+.root {
+  padding: 12px 8px;
+  margin: 1px 0;
+  border-radius: 4px;
+
+  .sender {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+
+      >svg {
+        font-size: 14px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      &.loading {
+        animation: spin 2s linear infinite;
+      }
+    }
+  }
+
+  .content {
+    min-height: 14px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .code {
+      position: relative;
+
+      .copyButton {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+
+        >svg {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .image {
+      position: relative;
+      display: block;
+      cursor: pointer;
+
+      .expandButton {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+      }
+
+      >img {
+        width: 100%;
+        margin: 0px auto;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  &.bot {
+    background-color: var(--mui-palette-action-hover);
+
+
+    .sender {
+      .icon {
+        background-color: #7E57C2;
+      }
+    }
+  }
+
+  &.user {
+    .sender {
+      .icon {
+        background-color: #66BB6A;
+      }
+    }
+  }
+}
+
+.expandedImg {
+  width: 100%;
+  margin: 0px auto;
+  border-radius: 4px;
+}

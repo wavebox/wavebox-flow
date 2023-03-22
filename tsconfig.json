@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "FileTemplates/*": ["FileTemplates/*"],
+      "FileSystem/*": ["FileSystem/*"],
+      "Icons/*": ["Icons/*"],
+      "Providers/*": ["Providers/*"],
+      "Redux/*": ["Redux/*"],
+      "R/*": ["./*"],
+      "Views/*": ["Views/*"],
+      "Storage/*": ["Storage/*"],
+      "WaveboxApi/*": ["WaveboxApi/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "bin"],
+  "typeAcquisition": {
+    "include": ["classes"]
+  }
+}

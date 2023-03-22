@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <title>Popup</title>
+  </head>
+  <body>
+    <div>
+      <p>Hello popup world!</p>
+      <img src="https://i.giphy.com/g7GKcSzwQfugw.gif" />
+    </div>
+  </body>
+</html>

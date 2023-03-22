@@ -1,0 +1,1 @@
+Content scripts can access and modify the elements on a page, as well as listen for, and respond to, events within the web page. This allows you to create new features on top of existing pages. Content scripts have access to a number of [Chrome APIs](https://developer.chrome.com/docs/extensions/mv3/content_scripts/)

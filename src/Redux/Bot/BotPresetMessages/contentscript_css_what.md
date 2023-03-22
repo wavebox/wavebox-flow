@@ -1,0 +1,1 @@
+You can use CSS to style the elements on websites. For example, you can use CSS to change the font size, color, and background of elements, as well remove elements you don't want to see.

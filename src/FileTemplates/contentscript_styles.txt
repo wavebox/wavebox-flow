@@ -1,0 +1,45 @@
+/*
+Styles let you change the way a page looks.
+This template doesn't make any changes by default, so you need to un-comment
+some of the examples, or write your own
+*/
+
+/*
+For example you could make some pages look really great with a blanket
+approach to setting colors...
+*/
+body {
+  /* background: lightblue; */
+  /* color: orangered; */
+
+  /*
+  New rules can sometimes conflict with those already on the page, so you may
+  need to add an !important flag to the rule to really change the color...
+  */
+  /* background: lightblue !important; */
+}
+
+/*
+The above made a change to the main element on the page, called the body, but
+you probably want to be a bit more specific. You can use selectors to do this,
+everything on a page is selectable with a selector. You could for example
+pick...
+  - a type of element (body, div, p)
+  - an element with a specific class (.section)
+  - an element with a unique id (#root)
+...Here's an example rule that changes any elements with the "section" class...
+*/
+.section {
+  /* border: 1px solid red */
+}
+
+/*
+You can use the element inspector in the browsers developer tools to find out
+more about a specific element and tailor a rule to it. There are some excellent
+resources on how to get started with CSS here
+https://developer.mozilla.org/docs/Learn/CSS/First_steps
+*/
+
+/*
+Most importantly, have fun!
+*/

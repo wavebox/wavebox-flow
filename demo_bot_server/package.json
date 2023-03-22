@@ -1,0 +1,15 @@
+{
+  "name": "bot_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^3.2.1",
+    "ws": "^8.12.0"
+  }
+}

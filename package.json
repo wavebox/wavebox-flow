@@ -1,7 +1,7 @@
 {
   "name": "wavebox_infinity_flow",
   "version": "1.0.0",
-  "description": "Easily create extensions using Wavebox flow to customize your browsing experience",
+  "description": "Easily create extensions using Wavebox Flow to customize your browsing experience",
   "scripts": {
     "watch": "webpack serve --mode=development --env=development",
     "start": "webpack --mode=development",

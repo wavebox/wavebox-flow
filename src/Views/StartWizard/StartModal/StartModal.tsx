@@ -111,7 +111,7 @@ class StartModal extends React.PureComponent<PropsWithRef & React.HTMLAttributes
             {...passProps}
           >
             <ModalTitle className={classes.title}>
-              Wavebox flow extension builder
+              Wavebox Flow Extension Builder
             </ModalTitle>
             <div className={clsx(classes.panes, !termsAgreed && !waveboxTermsAgreed ? classes.termsDisabled : undefined)}>
               <CreatePane

@@ -1,10 +1,10 @@
 # Wavebox Flow
 
-<img width="1025" alt="Wavebox flow screenshot" src="images/hero.png">
+<img width="1025" alt="Wavebox Flow screenshot" src="images/hero.png">
 
-Wavebox flow is a tool that allows you to easily create browser extensions from within your browser. Flow includes helpful templates to get started and a ChatGPT Assistant that can give you hints and tips, complete bits of code and find errors. Without much coding experience, you can give sites superpowers, make Twitter pink or replace every instance of "duck" with "quack".
+Wavebox Flow is a tool that allows you to easily create browser extensions from within your browser. Flow includes helpful templates to get started and a ChatGPT Assistant that can give you hints and tips, complete bits of code and find errors. Without much coding experience, you can give sites superpowers, make Twitter pink or replace every instance of "duck" with "quack".
 
-Wavebox flow is build completely on web technologies and runs right in your browser, and the extensions you create work in any Chromium browser & Firefox! If you're using [Wavebox](https://wavebox.io) to create your flows, then there are some extra helpers available to load, reload & manage your creations to make everything super simple 🦸.
+Wavebox Flow is build completely on web technologies and runs right in your browser, and the extensions you create work in any Chromium browser & Firefox! If you're using [Wavebox](https://wavebox.io) to create your flows, then there are some extra helpers available to load, reload & manage your creations to make everything super simple 🦸.
 
 
 ## Getting started

@@ -24,7 +24,12 @@ interface EditingFile {
   unsavedChanges: boolean
 }
 
-type SetEditorFn = (editor: editor.IStandaloneCodeEditor | null) => void
+export interface PublicCodeEditor {
+  editor: editor.IStandaloneCodeEditor
+  saveNow: () => Promise<void>
+}
+
+type SetEditorFn = (publicEditor: PublicCodeEditor | null) => void
 
 interface Props {
   dispatch: AppDispatch
@@ -52,10 +57,6 @@ class CodeEditor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDi
     contents: undefined,
     unsavedChanges: false
   }
-
-  /* **************************************************************************/
-  // Public
-  /* **************************************************************************/
 
   /* **************************************************************************/
   // Data
@@ -213,7 +214,11 @@ class CodeEditor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDi
   }
 
   handleEditorMount: OnMount = (editor) => {
-    this.props.onSetEditor(editor)
+    const { onSetEditor } = this.props
+    onSetEditor({
+      editor,
+      saveNow: this.handleSaveNow
+    })
   }
 
   /* **************************************************************************/

@@ -10,11 +10,16 @@ import { isHintViewOpen } from 'Redux/Views/ViewsSelectors'
 import { SizeMe } from 'react-sizeme'
 import SettingsActions from 'Redux/Settings/SettingsActions'
 import * as BotSagas from 'Redux/Bot/BotSagas'
+import {
+  isExtensionManagerAvailable,
+  reloadExtension
+} from 'WaveboxApi'
 
 import type { RootState, AppDispatch } from 'Redux/Store'
 import type { SizeMeProps } from 'react-sizeme'
-import type { editor } from 'monaco-editor/esm/vs/editor/editor.api'
 import type { FSFileSystemDirectoryHandle, FSFileSystemFileHandle } from 'FileSystem'
+import type RemoteFileSystemDirectoryHandle from 'FileSystem/RemoteFileSystemDirectoryHandle'
+import type { PublicCodeEditor } from './CodeEditor'
 
 interface Props {
   dispatch: AppDispatch
@@ -37,7 +42,7 @@ class Editor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDivEle
   /* **************************************************************************/
 
   #assistantViewResize: undefined | { mouseX: number, startWidth: number, lastWidth: number }
-  #codeEditor: editor.IStandaloneCodeEditor | null = null
+  #codeEditor: PublicCodeEditor | null = null
 
   /* **************************************************************************/
   // State
@@ -60,7 +65,7 @@ class Editor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDivEle
   // Editor events
   /* **************************************************************************/
 
-  handleSetEditor = (editor: editor.IStandaloneCodeEditor | null) => {
+  handleSetEditor = (editor: PublicCodeEditor | null) => {
     this.#codeEditor = editor
   }
 
@@ -72,14 +77,24 @@ class Editor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDivEle
 
     if (fileHandle) {
       if (this.#codeEditor) {
-        const model = this.#codeEditor.getModel()
-        const selection = this.#codeEditor.getSelection()
+        const model = this.#codeEditor.editor.getModel()
+        const selection = this.#codeEditor.editor.getSelection()
         if (model && selection) {
           BotSagas.validateCode(dispatch, fileHandle, model.getValueInRange(selection))
           return
         }
       }
       BotSagas.validateCode(dispatch, fileHandle)
+    }
+  }
+
+  handleReloadExtension = async () => {
+    const { directoryHandle } = this.props
+    if (await isExtensionManagerAvailable() && directoryHandle) {
+      if (this.#codeEditor) {
+        await this.#codeEditor.saveNow()
+      }
+      reloadExtension(directoryHandle as RemoteFileSystemDirectoryHandle)
     }
   }
 
@@ -158,6 +173,7 @@ class Editor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDivEle
         >
           <EditorToolbar
             onCheckCodeForErrors={this.handleCheckCodeForErrors}
+            onReloadExtension={this.handleReloadExtension}
             className={classes.toolbar}
           />
           <CodeEditor

@@ -4,19 +4,14 @@ import { IconButton, Tooltip } from '@mui/material'
 import { connect } from 'react-redux'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import GradientSvgIcon from 'Icons/GradientSvgIcon'
-import {
-  isExtensionManagerAvailable,
-  reloadExtension
-} from 'WaveboxApi'
+import { isExtensionManagerAvailable } from 'WaveboxApi'
 import ViewsActions from 'Redux/Views/ViewsActions'
 import { HintView } from 'Redux/Views/ViewsTypes'
 
-import type { RootState, AppDispatch } from 'Redux/Store'
-import type { FSFileSystemDirectoryHandle } from 'FileSystem'
-import type RemoteFileSystemDirectoryHandle from 'FileSystem/RemoteFileSystemDirectoryHandle'
+import type { AppDispatch } from 'Redux/Store'
 
 interface Props {
-  directoryHandle: undefined | FSFileSystemDirectoryHandle
+  onReloadExtension: () => void
 
   suppressHint: () => void
 }
@@ -46,11 +41,9 @@ class ReloadButton extends React.PureComponent<Props & React.HTMLAttributes<HTML
   /* **************************************************************************/
 
   handleButtonClick = () => {
-    const { directoryHandle, suppressHint } = this.props
-    if (directoryHandle) {
-      reloadExtension(directoryHandle as RemoteFileSystemDirectoryHandle)
-      this.setState({ animate: true })
-    }
+    const { onReloadExtension, suppressHint } = this.props
+    this.setState({ animate: true })
+    onReloadExtension()
     suppressHint()
   }
 
@@ -67,8 +60,7 @@ class ReloadButton extends React.PureComponent<Props & React.HTMLAttributes<HTML
   render () {
     const {
       className,
-
-      directoryHandle,
+      onReloadExtension,
 
       suppressHint,
 
@@ -101,10 +93,8 @@ class ReloadButton extends React.PureComponent<Props & React.HTMLAttributes<HTML
   }
 }
 
-function mapStateToProps (state: RootState) {
-  return {
-    directoryHandle: state.fileSystem.directoryHandle
-  }
+function mapStateToProps () {
+  return {}
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

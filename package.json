@@ -70,6 +70,7 @@
     "redux-thunk": "^2.4.2",
     "sanitize-filename": "^1.6.3",
     "throttle-debounce": "^5.0.0",
+    "ua-parser-js": "^2.0.0-alpha.1",
     "uuid": "^9.0.0",
     "valid-url": "^1.0.9"
   }

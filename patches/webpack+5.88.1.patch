@@ -2,10 +2,10 @@ diff --git a/node_modules/webpack/.DS_Store b/node_modules/webpack/.DS_Store
 new file mode 100644
 index 0000000..e69de29
 diff --git a/node_modules/webpack/lib/ProvidePlugin.js b/node_modules/webpack/lib/ProvidePlugin.js
-index 8373389..1142e1f 100644
+index 1487dec..a17fe98 100644
 --- a/node_modules/webpack/lib/ProvidePlugin.js
 +++ b/node_modules/webpack/lib/ProvidePlugin.js
-@@ -41,9 +41,28 @@ class ProvidePlugin {
+@@ -52,6 +52,24 @@ class ProvidePlugin {
  					ProvidedDependency,
  					new ProvidedDependency.Template()
  				);
@@ -27,6 +27,10 @@ index 8373389..1142e1f 100644
 +					}
 +				}
 +
+ 				/**
+ 				 * @param {JavascriptParser} parser the parser
+ 				 * @param {JavascriptParserOptions} parserOptions options
+@@ -60,6 +78,7 @@ class ProvidePlugin {
  				const handler = (parser, parserOptions) => {
  					Object.keys(definitions).forEach(name => {
  						const request = [].concat(definitions[name]);
@@ -34,27 +38,23 @@ index 8373389..1142e1f 100644
  						const splittedName = name.split(".");
  						if (splittedName.length > 0) {
  							splittedName.slice(1).forEach((_, i) => {
-@@ -53,6 +72,9 @@ class ProvidePlugin {
+@@ -69,6 +88,9 @@ class ProvidePlugin {
  						}
  
- 						parser.hooks.expression.for(name).tap("ProvidePlugin", expr => {
+ 						parser.hooks.expression.for(name).tap(PLUGIN_NAME, expr => {
 +							// Wavebox - rewrite dynamic imports
 +							const request = rewriteWaveboxDynamicRequest(parser, originalRequest)
 +
  							const nameIdentifier = name.includes(".")
  								? `__webpack_provided_${name.replace(/\./g, "_dot_")}`
  								: name;
-@@ -68,9 +90,13 @@ class ProvidePlugin {
+@@ -84,6 +106,9 @@ class ProvidePlugin {
  						});
  
- 						parser.hooks.call.for(name).tap("ProvidePlugin", expr => {
+ 						parser.hooks.call.for(name).tap(PLUGIN_NAME, expr => {
 +							// Wavebox - rewrite dynamic imports
 +							const request = rewriteWaveboxDynamicRequest(parser, originalRequest)
 +
  							const nameIdentifier = name.includes(".")
  								? `__webpack_provided_${name.replace(/\./g, "_dot_")}`
  								: name;
-+							//console.log(">>>",request)
- 							const dep = new ProvidedDependency(
- 								request[0],
- 								nameIdentifier,

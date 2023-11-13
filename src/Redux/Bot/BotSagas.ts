@@ -286,7 +286,7 @@ export const streamPresetMessage = async (
   preset: PresetStreamMessage,
   maxTime?: number
 ) => {
-  maxTime = maxTime === undefined ? preset.response.length * 6 : maxTime
+  maxTime = maxTime ?? preset.response.length * 6
   await streamMessageInternal(dispatch, preset.request, preset.response, maxTime)
 }
 

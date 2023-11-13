@@ -1,13 +1,13 @@
-const { Configuration, OpenAIApi } = require('openai')
+const OpenAI = require('openai')
 const { Server } = require('ws')
 
-const openai = new OpenAIApi(new Configuration({
+const openai = new OpenAI({
   apiKey: undefined // Place your openAI key here
-}))
+})
 
 async function getResponse (opts, updateCb) {
   try {
-    const res = await openai.createChatCompletion({
+    const stream = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       max_tokens: 2048,
       temperature: 0,
@@ -15,42 +15,12 @@ async function getResponse (opts, updateCb) {
       messages: opts.messages
     }, { responseType: 'stream' })
 
-    await new Promise((resolve, reject) => {
-      res.data.on('data', (data) => {
-        const messages = data
-          .toString()
-          .split('\n')
-          .reduce((acc, line) => {
-            if (line && line.startsWith('data:')) {
-              acc.push(line.replace(/^data: /, '').trim())
-            }
-            return acc
-          }, [])
-
-        for (const message of messages) {
-          if (message === '[DONE]') {
-            resolve()
-            return
-          } else {
-            let parsed
-            try {
-              parsed = JSON.parse(message)
-            } catch (error) {
-              throw new Error(`Could not JSON parse stream. Message: ${message} Error: ${error}`)
-            }
-
-            for (const choice of parsed.choices) {
-              if (choice.finish_reason === 'stop') {
-                resolve()
-                return
-              } else if (choice.delta.content) {
-                updateCb(choice.delta.content)
-              }
-            }
-          }
-        }
-      })
-    })
+    let buffer = ''
+    for await (const part of stream) {
+      const content = part.choices[0]?.delta?.content || ''
+      buffer += content
+      updateCb(content)
+    }
   } catch (ex) {
     if (ex.response?.status) {
       console.error(ex.response.status, ex.message)

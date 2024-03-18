@@ -124,7 +124,8 @@ const sendMessageInternal = async (dispatch: AppDispatch, options: SendMessageOp
 }
 
 const getFileLanguage = (fileHandle: FSFileSystemFileHandle) => {
-  const fileExt = fileHandle.name.split('.').at(-1) as string
+  const fileExt = fileHandle.name.split('.').at(-1)
+  if (typeof (fileExt) !== 'string') { return 'code' }
   switch (fileExt) {
     case 'js': return 'JavaScript'
     case 'css': return 'CSS'

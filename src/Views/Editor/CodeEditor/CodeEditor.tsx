@@ -164,7 +164,8 @@ class CodeEditor extends React.PureComponent<Props & React.HTMLAttributes<HTMLDi
    */
   #getEditorLanguage = memoizeOne((filename: string | undefined): string | undefined => {
     if (filename === undefined) { return undefined }
-    const ext = filename.split('.').at(-1) as string
+    const ext = filename.split('.').at(-1)
+    if (typeof (ext) !== 'string') { return 'code' }
     switch (ext) {
       case 'js': return 'javascript'
       case 'css': return 'css'

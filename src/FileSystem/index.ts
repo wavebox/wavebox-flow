@@ -58,6 +58,7 @@ export async function deleteFlowDirectory (handle: FSFileSystemDirectoryHandle):
 export async function getEditorHistory () {
   if (await isExtensionManagerAvailable()) {
     const history = []
+
     for (const data of await FileSystemPort.request('getEditorHistory')) {
       history.push(new RemoteFileSystemDirectoryHandle(data))
     }

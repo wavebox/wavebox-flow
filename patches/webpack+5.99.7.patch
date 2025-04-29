@@ -37,7 +37,7 @@ index 28c3ce5..5cfa897 100644
  							for (const [i, _] of splittedName.slice(1).entries()) {
 @@ -71,6 +90,9 @@ class ProvidePlugin {
  						}
-
+ 
  						parser.hooks.expression.for(name).tap(PLUGIN_NAME, expr => {
 +							// Wavebox - rewrite dynamic imports
 +							const request = rewriteWaveboxDynamicRequest(parser, originalRequest)
@@ -47,7 +47,7 @@ index 28c3ce5..5cfa897 100644
  								: name;
 @@ -86,6 +108,9 @@ class ProvidePlugin {
  						});
-
+ 
  						parser.hooks.call.for(name).tap(PLUGIN_NAME, expr => {
 +							// Wavebox - rewrite dynamic imports
 +							const request = rewriteWaveboxDynamicRequest(parser, originalRequest)

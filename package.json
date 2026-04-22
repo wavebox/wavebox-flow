@@ -71,7 +71,7 @@
     "sanitize-filename": "^1.6.3",
     "throttle-debounce": "^5.0.2",
     "ua-parser-js": "^2.0.0-beta.2",
-    "uuid": "^9.0.1",
+    "uuid": "^14.0.0",
     "valid-url": "^1.0.9"
   },
   "overrides": {
